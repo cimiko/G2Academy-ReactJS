@@ -5,7 +5,7 @@ import { Header, Body, Footer } from './templates';
 class App extends Component{
   constructor(props){
     super(props);
-    this.name = "Admin";
+    this.name = "Admin"; 
   }
   render(){
     // const name = "admin";
