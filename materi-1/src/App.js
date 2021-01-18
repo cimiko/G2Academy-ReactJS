@@ -4,6 +4,8 @@ import './App.css';
 import Header, {Header2} from './template/header'
 import Body from './template/body'
 import Navbar from './template/navbar'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar2 from './template/navbar2';
 
 // class App extends Component {
 //   constructor(props) {
@@ -31,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <>
+        <Navbar2></Navbar2>
         <Header></Header>
         <Header2></Header2>
         <Navbar></Navbar>
