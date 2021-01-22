@@ -45,7 +45,7 @@ class ListPeople extends Component {
         const { people, ...restState } = this.state
         return (
             <>
-                <PeopleList people={people} myFunction={this.myFunction} {...restState} Paragraft={<Paragraft/>} />
+                <PeopleList people={people} myFunction={this.myFunction} {...restState} Paragraft={<Paragraft />} />
                 {/* atau tanpa const */}
                 {/* <PeopleList people={this.state.people} /> */}
             </>
@@ -66,7 +66,7 @@ const PeopleList = ({ name, room, is_bootcamp, session, people, myFunction, Para
         <>
             <p>name: {name}</p>
             <p>room: {room}</p>
-            <p>is bootcamp: {is_bootcamp ? "Iya": "Bukan"}</p>
+            <p>is bootcamp: {is_bootcamp ? "Iya" : "Bukan"}</p>
             <p>session: {session[2]}</p>
             {Paragraft}
             <ul>
