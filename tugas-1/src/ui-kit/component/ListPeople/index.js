@@ -66,8 +66,8 @@ class ListPeople extends Component {
         return (
             <>
                 <div className={style.flex}>
-                    <Input type="text" value={this.state.name} placeholder="Masukan Nama Anda!!" onChange={this.onInput} className="form-control w-25" />
-                    <Button className={style.btn} onClick={this.addPeople}>Add</Button>
+                    <Input type="text" value={this.state.name} placeholder="Masukan Nama Anda!!" onChange={this.onInput} className="form-control w-25 mt-5 mb-5" />
+                    <Button className={`${style.btn} mt-5 mb-5`} onClick={this.addPeople}>Add</Button>
                 </div>
                 <People
                     people={people}
