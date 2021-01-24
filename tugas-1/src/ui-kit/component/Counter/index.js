@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 // import Input from 'ui-kit/Atom/Input';
 import style from './style.module.css';
 import { Button, Icon, P, H5 } from 'ui-kit/Atom';
-import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 class Counter extends Component {
     constructor(props) {
@@ -78,6 +79,14 @@ class Counter extends Component {
             </>
         );
     }
+}
+
+Counter.propTypes = {
+    counter: PropTypes.number,
+    min: PropTypes.number,
+    stock: PropTypes.number,
+    harga: PropTypes.number,
+    warna: PropTypes.string
 }
 
 export default Counter;
