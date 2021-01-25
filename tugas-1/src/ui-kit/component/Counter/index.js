@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Input from 'ui-kit/Atom/Input';
 import style from './style.module.css';
 import { Button, Icon, P, H5 } from 'ui-kit/Atom';
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -56,7 +55,6 @@ class Counter extends Component {
                 <H5>Atur jumlah dan catatan</H5>
                 <div className={`${style.flex} mt-2`}>
                     <Button className={style.bg_none} onClick={this.onSubtract}><Icon className={style.icon} icon={faMinusCircle} /></Button>
-                    {/* <Input type="number" value={counter} className={`w-25 form-control text-center ${style.input}`} min={min} /> */}
                     <P className={`text-center ${style.inputP}`}>{counter}</P>
                     <Button className={style.bg_none} onClick={this.onAdd}><Icon className={style.icon} icon={faPlusCircle} /></Button>
                     <P className={style.p} >Stock <b>{stock}</b></P>

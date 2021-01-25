@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Img from 'ui-kit/Atom/Img';
 import logo from 'logo.svg';
-// import NavStyle from './nav.module.css'
 
 
 

@@ -4,10 +4,6 @@ import { Input, Button } from 'ui-kit/Atom';
 import style from './style.module.css';
 import { Table } from 'react-bootstrap'
 
-// function Paragraph() {
-//     return <p>Halo</p>
-// }
-
 class ListPeople extends Component {
     constructor() {
         super()
@@ -40,13 +36,8 @@ class ListPeople extends Component {
         }
     }
 
-    myFunction = () => {
-        console.log(this.state.name)
-    }
-
     onInput = e => {
         this.setState({ name: e.target.value })
-        console.log(this.state.name);
     }
 
     addPeople = (e) => {
@@ -57,7 +48,6 @@ class ListPeople extends Component {
             status: "Tambahan Baru"
         });
         this.setState({ people: joined, name: '' })
-        console.log(this.state.people);
     }
 
     render() {
@@ -87,26 +77,9 @@ function People({
     myFunction,
     Paragraph
 }) {
-    // const onClick = name => {
-    //     console.log(name)
-    //     myFunction()
-    // }
-
-    // const addPeople = () => {
-    //     // e.preventDefault()
-    //     let joined = this.state.people.concat({name});
-    //     this.setState({ people: joined})
-    // }
 
     return (
         <>
-            {/* <P>name: {name}</P>
-            <P>room: {room}</P>
-            <P>is bootcamp: {is_bootcamp ? 'iya' : 'bukan'}</P>
-            <P>session: {session[2]}</P>
-            {Paragraph} */}
-            {/* <input type="text" name="name" value={name} placeholder="input nama jedi baru" onChange={onChange()}/> */}
-            {/* <button>Add Jedi</button> */}
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -117,10 +90,7 @@ function People({
                 </thead>
                 <tbody>
                     {people.map(x => (
-                        // <li key={x.id} onClick={() => onClick(x.name)}>
-                        //     {x.name}
-                        // </li>
-                        <tr>
+                        <tr key={x.id}>
                             <td>{x.id}</td>
                             <td>{x.name}</td>
                             <td>{x.status}</td>
@@ -133,7 +103,6 @@ function People({
 }
 
 People.propTypes = {
-    // name: PropTypes.oneOf(['G2 Academy', 'Academy']),
     name: PropTypes.string,
     room: PropTypes.number,
     is_bootcamp: PropTypes.bool,
