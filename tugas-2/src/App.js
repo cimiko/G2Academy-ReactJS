@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import { Header } from 'ui-kit/Organism'
+import { Header, Body } from 'ui-kit/Organism'
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <Body />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
