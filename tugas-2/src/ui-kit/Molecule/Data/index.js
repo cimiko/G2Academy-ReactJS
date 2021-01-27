@@ -30,7 +30,7 @@ class Data extends Component {
         }
     }
     render() {
-        const { person, search} = this.state
+        const { person, search } = this.state
         return (
             <>
                 <PersonList person={person} search={search} />
@@ -52,7 +52,7 @@ const PersonList = ({ person, search }) => {
                 </thead>
                 <tbody>
                     {person.map(x =>
-                        <tr>
+                        <tr key={x.id}>
                             <td>{x.id}</td>
                             <td>{x.nama}</td>
                             <td>{x.domisili}</td>
