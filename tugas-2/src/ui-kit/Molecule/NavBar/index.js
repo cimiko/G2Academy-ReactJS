@@ -13,7 +13,7 @@ function NavBar({ search, btnSearch }) {
                     src={logo}
                     width="30"
                     height="30"
-                    className="d-inline-block align-top"
+                    className="d-inline-block align-top app-logo"
                 />{' '}
       CIMIKO
     </Navbar.Brand>
