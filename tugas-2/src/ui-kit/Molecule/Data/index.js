@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap'
+import { Navbar, Form, FormControl, Button, Table } from 'react-bootstrap'
+import { Img } from 'ui-kit/Atom'
+import logo from 'logo.svg'
+import PropTypes from 'prop-types';
 
 class Data extends Component {
     constructor(props) {
         super(props);
         this.state = {
             search: '',
+            filter: '',
             person: [{
                 id: 1,
                 nama: "Andi",
@@ -29,17 +33,35 @@ class Data extends Component {
             }]
         }
     }
+
+    onInput = e => {
+        this.setState({ search: e.target.value })
+        console.log(this.state.search);
+    }
+
+
+    onSearch = e => {
+        e.preventDefault()
+        let filterData = this.state.person.filter(value => { return value.nama.toLowerCase().includes(this.state.search.toLowerCase()) })
+        console.log(filterData);
+
+        this.setState({ filter: filterData })
+        console.log(this.state.filter);
+    }
+
     render() {
-        const { person, search } = this.state
+        const { person, filter } = this.state
+        const fill = filter !== '' ? filter : person
         return (
             <>
-                <PersonList person={person} search={search} />
+                <NavBar search={this.onInput} btnSearch={this.onSearch} />
+                <PersonList person={fill} />
             </>
         );
     }
 }
 
-const PersonList = ({ person, search }) => {
+const PersonList = ({ person }) => {
     return (
         <>
             <Table striped bordered hover>
@@ -62,6 +84,43 @@ const PersonList = ({ person, search }) => {
             </Table>
         </>
     )
+}
+
+function NavBar({ search, btnSearch }) {
+
+    return (
+        <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="#home">
+                <Img
+                    alt="logo"
+                    src={logo}
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                />{' '}
+      CIMIKO
+    </Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+                <Form inline className="justify-content-end">
+                    <FormControl type="text" placeholder="Ada yang mau dicari?" className=" mr-sm-2" onKeyUp={search} />
+                    <Button type="submit" onClick={btnSearch}>Search</Button>
+                </Form>
+            </Navbar.Collapse>
+        </Navbar>
+    )
+}
+
+PersonList.propTypes = {
+    person: PropTypes.arrayOf(
+        PropTypes.objectOf(
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        ))
+}
+
+NavBar.propTypes = {
+    search: PropTypes.func,
+    btnSearch: PropTypes.func
 }
 
 export default Data;
