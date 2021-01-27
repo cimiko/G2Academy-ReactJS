@@ -2,8 +2,9 @@ import React from 'react'
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import { Img } from 'ui-kit/Atom'
 import logo from 'logo.svg'
+import PropTypes from 'prop-types';
 
-function NavBar() {
+function NavBar({ search, btnSearch }) {
     return (
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">
@@ -19,12 +20,17 @@ function NavBar() {
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
                 <Form inline className="justify-content-end">
-                    <FormControl type="text" placeholder="Ada yang mau dicari?" className=" mr-sm-2" />
-                    <Button type="submit">Search</Button>
+                    <FormControl type="text" placeholder="Ada yang mau dicari?" className=" mr-sm-2" onKeyUp={search} />
+                    <Button type="submit" onClick={btnSearch}>Search</Button>
                 </Form>
             </Navbar.Collapse>
         </Navbar>
     )
+}
+
+NavBar.propTypes = {
+    search: PropTypes.func,
+    btnSearch: PropTypes.func
 }
 
 export default NavBar

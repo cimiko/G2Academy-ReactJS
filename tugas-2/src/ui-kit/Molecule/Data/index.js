@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Navbar, Form, FormControl, Button, Table } from 'react-bootstrap'
-import { Img } from 'ui-kit/Atom'
-import logo from 'logo.svg'
+import { Table } from 'react-bootstrap'
 import PropTypes from 'prop-types';
+import {NavBar} from 'ui-kit/Molecule'
+import Style from './style.module.css'
 
 class Data extends Component {
     constructor(props) {
@@ -11,23 +11,23 @@ class Data extends Component {
             search: '',
             filter: '',
             person: [{
-                id: 1,
+                id: 19918656,
                 nama: "Andi",
                 domisili: "Jakarta"
             }, {
-                id: 2,
+                id: 19935874,
                 nama: "Joko",
                 domisili: "Bekasi"
             }, {
-                id: 3,
+                id: 19964852,
                 nama: "Regina",
                 domisili: "Bogor"
             }, {
-                id: 4,
+                id: 19729875,
                 nama: "Saiful",
                 domisili: "Tangerang"
             }, {
-                id: 5,
+                id: 19855698,
                 nama: "Rudi",
                 domisili: "Serang"
             }]
@@ -60,18 +60,20 @@ class Data extends Component {
 
 const PersonList = ({ person }) => {
     return (
-        <>
-            <Table striped bordered hover>
+        <div className={Style.wrapper}>
+            <Table striped bordered hover className={Style.personTable}>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
+                        <th>ID Person</th>
                         <th>Nama</th>
                         <th>Domisili</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {person.map(x =>
+                    {person.map((x, index) =>
                         <tr key={x.id}>
+                            <td>{index + 1}</td>
                             <td>{x.id}</td>
                             <td>{x.nama}</td>
                             <td>{x.domisili}</td>
@@ -79,32 +81,7 @@ const PersonList = ({ person }) => {
                     )}
                 </tbody>
             </Table>
-        </>
-    )
-}
-
-function NavBar({ search, btnSearch }) {
-
-    return (
-        <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">
-                <Img
-                    alt="logo"
-                    src={logo}
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                />{' '}
-      CIMIKO
-    </Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-                <Form inline className="justify-content-end">
-                    <FormControl type="text" placeholder="Ada yang mau dicari?" className=" mr-sm-2" onKeyUp={search} />
-                    <Button type="submit" onClick={btnSearch}>Search</Button>
-                </Form>
-            </Navbar.Collapse>
-        </Navbar>
+        </div>
     )
 }
 
@@ -115,9 +92,6 @@ PersonList.propTypes = {
         ))
 }
 
-NavBar.propTypes = {
-    search: PropTypes.func,
-    btnSearch: PropTypes.func
-}
+
 
 export default Data;
