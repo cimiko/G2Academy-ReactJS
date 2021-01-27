@@ -36,17 +36,14 @@ class Data extends Component {
 
     onInput = e => {
         this.setState({ search: e.target.value })
-        console.log(this.state.search);
     }
 
 
     onSearch = e => {
         e.preventDefault()
         let filterData = this.state.person.filter(value => { return value.nama.toLowerCase().includes(this.state.search.toLowerCase()) })
-        console.log(filterData);
 
         this.setState({ filter: filterData })
-        console.log(this.state.filter);
     }
 
     render() {
