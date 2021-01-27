@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  position: relative;
+}
+
+.videoTag{
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .App-logo {
