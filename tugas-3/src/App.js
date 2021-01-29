@@ -8,7 +8,8 @@ class App extends Component {
     super(props);
     this.state = {
       person: [],
-      page: 1
+      page: 1,
+      dataLength: 0
     }
   }
 
@@ -17,6 +18,23 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         this.setState({ person: res.results })
+      })
+  }
+
+  componentDidMount() {
+    this.fetchApi()
+    this.dataLength()
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   this.fetchApi()
+  // }
+
+  dataLength = async () => {
+    await fetch(`https://swapi.dev/api/people/`)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ dataLength: Math.ceil(res.count / 10) })
       })
   }
 
@@ -32,16 +50,13 @@ class App extends Component {
     this.fetchApi()
   }
 
-  componentDidMount() {
-    this.fetchApi()
-  }
 
   render() {
-    const { person, page } = this.state
+    const { person, page, dataLength } = this.state
 
     return (
       <div className="App">
-        <Body person={person} page={page} fetchApi={this.fetchApi} onPrev={this.onPrev} onNext={this.onNext} />
+        <Body person={person} page={page} dataLength={dataLength} fetchApi={this.fetchApi} onPrev={this.onPrev} onNext={this.onNext} />
         <video className='videoTag' autoPlay loop muted>
           <source src={Backvid} type='video/mp4' />
         </video>

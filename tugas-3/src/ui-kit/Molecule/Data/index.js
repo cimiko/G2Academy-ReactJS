@@ -10,28 +10,9 @@ class Data extends Component {
         super(props);
         this.state = {
             search: '',
-            filter: '',
-            dataLength: 0
+            filter: ''
         }
     }
-
-    componentDidMount() {
-        this.props.fetchApi()
-        this.dataLength()
-    }
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     this.fetchApi()
-    // }
-
-    dataLength = async() => {
-        await fetch(`https://swapi.dev/api/people/`)
-            .then(res => res.json())
-            .then(res => {
-                this.setState({ dataLength: Math.ceil(res.count/10) })
-            })
-    }
-
 
     onInput = e => {
         this.setState({ search: e.target.value })
@@ -46,8 +27,8 @@ class Data extends Component {
     }
 
     render() {
-        const {  filter, dataLength } = this.state
-        const { person, Next, Prev , page} = this.props
+        const {  filter } = this.state
+        const { person, Next, Prev , page, dataLength} = this.props
         const fill = filter !== '' ? filter : person
 
         return (
