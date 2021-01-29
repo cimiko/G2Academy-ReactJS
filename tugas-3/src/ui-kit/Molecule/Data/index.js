@@ -40,7 +40,7 @@ class Data extends Component {
 
     onSearch = e => {
         e.preventDefault()
-        let filterData = this.state.person.filter(value => { return value.name.toLowerCase().includes(this.state.search.toLowerCase()) })
+        let filterData = this.props.person.filter(value => { return value.name.toLowerCase().includes(this.state.search.toLowerCase()) })
 
         this.setState({ filter: filterData })
     }
