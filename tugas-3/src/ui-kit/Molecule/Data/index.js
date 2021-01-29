@@ -13,22 +13,23 @@ class Data extends Component {
             filter: '',
             page: 1,
             dataLength: 0 ,
-            person: []
+            person: this.props.person
         }
     }
 
-    fetchApi = () => {
-        fetch(`https://swapi.dev/api/people/?page=${this.state.page}`)
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                this.setState({ person: res.results })
-            })
-    }
+    // fetchApi = () => {
+    //     fetch(`https://swapi.dev/api/people/?page=${this.state.page}`)
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res)
+    //             this.setState({ person: res.results })
+    //         })
+    // }
 
     componentDidMount() {
-        this.fetchApi()
+        this.props.fetchApi()
         this.dataLength()
+        console.log(this.props.fetchApi());
     }
 
     // componentDidUpdate(prevProps, prevState) {
@@ -57,22 +58,23 @@ class Data extends Component {
         this.setState({ filter: filterData })
     }
 
-    onPrev = async() => {
-        if(this.state.page >= 1){
-            await this.setState({ page: this.state.page - 1 })
-            console.log(this.state.page);
-        }
-        this.fetchApi()
-    }
+    // onPrev = async() => {
+    //     if(this.state.page >= 1){
+    //         await this.setState({ page: this.state.page - 1 })
+    //         console.log(this.state.page);
+    //     }
+    //     this.fetchApi()
+    // }
 
-    onNext = async() => {
-        await this.setState({ page: this.state.page + 1 })
-        console.log(this.state.page);
-        this.fetchApi()
-    }
+    // onNext = async() => {
+    //     await this.setState({ page: this.state.page + 1 })
+    //     console.log(this.state.page);
+    //     this.fetchApi()
+    // }
 
     render() {
-        const { person, filter, page, dataLength } = this.state
+        const {  filter, dataLength } = this.state
+        const { person, Next, Prev , page} = this.props
         const fill = filter !== '' ? filter : person
 
         return (
@@ -81,7 +83,7 @@ class Data extends Component {
                 <div className={Style.listData}>
                     <PersonList person={fill} />
                     <Space/>
-                    <PaginationBtn className={`justify-content-center ${Style.Page}`} page={page} dataLength={dataLength} onPrev={this.onPrev} onNext={this.onNext} />
+                    <PaginationBtn className={`justify-content-center ${Style.Page}`} page={page} dataLength={dataLength} onPrev={Prev} onNext={Next} />
                 </div>
             </>
         );

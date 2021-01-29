@@ -1,10 +1,10 @@
 import React from 'react'
 import {Data} from 'ui-kit/Molecule'
 
-function Body() {
+function Body({ page, person, fetchApi, onPrev, onNext}) {
     return (
         <>
-            <Data/>
+            <Data person={person} page={page} fetchApi={fetchApi} Prev={onPrev} Next={onNext} />
         </>
     )
 }
