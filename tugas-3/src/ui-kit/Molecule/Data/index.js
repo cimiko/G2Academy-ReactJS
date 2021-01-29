@@ -11,25 +11,13 @@ class Data extends Component {
         this.state = {
             search: '',
             filter: '',
-            page: 1,
-            dataLength: 0 ,
-            person: this.props.person
+            dataLength: 0
         }
     }
-
-    // fetchApi = () => {
-    //     fetch(`https://swapi.dev/api/people/?page=${this.state.page}`)
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             console.log(res)
-    //             this.setState({ person: res.results })
-    //         })
-    // }
 
     componentDidMount() {
         this.props.fetchApi()
         this.dataLength()
-        console.log(this.props.fetchApi());
     }
 
     // componentDidUpdate(prevProps, prevState) {
@@ -40,7 +28,6 @@ class Data extends Component {
         await fetch(`https://swapi.dev/api/people/`)
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 this.setState({ dataLength: Math.ceil(res.count/10) })
             })
     }
@@ -57,20 +44,6 @@ class Data extends Component {
 
         this.setState({ filter: filterData })
     }
-
-    // onPrev = async() => {
-    //     if(this.state.page >= 1){
-    //         await this.setState({ page: this.state.page - 1 })
-    //         console.log(this.state.page);
-    //     }
-    //     this.fetchApi()
-    // }
-
-    // onNext = async() => {
-    //     await this.setState({ page: this.state.page + 1 })
-    //     console.log(this.state.page);
-    //     this.fetchApi()
-    // }
 
     render() {
         const {  filter, dataLength } = this.state
