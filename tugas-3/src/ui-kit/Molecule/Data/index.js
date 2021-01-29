@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Table, Pagination } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import PropTypes from 'prop-types';
-import { NavBar } from 'ui-kit/Molecule'
+import {Space} from 'ui-kit/Atom'
+import { NavBar, PaginationBtn } from 'ui-kit/Molecule'
 import Style from './style.module.css'
 
 class Data extends Component {
@@ -10,12 +11,13 @@ class Data extends Component {
         this.state = {
             search: '',
             filter: '',
-            page: 2,
+            page: 1,
+            dataLength: 0 ,
             person: []
         }
     }
 
-    componentDidMount() {
+    fetchApi = () => {
         fetch(`https://swapi.dev/api/people/?page=${this.state.page}`)
             .then(res => res.json())
             .then(res => {
@@ -24,6 +26,25 @@ class Data extends Component {
             })
     }
 
+    componentDidMount() {
+        this.fetchApi()
+        this.dataLength()
+    }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     this.fetchApi()
+    // }
+
+    dataLength = async() => {
+        await fetch(`https://swapi.dev/api/people/`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                this.setState({ dataLength: Math.ceil(res.count/10) })
+            })
+    }
+
+
     onInput = e => {
         this.setState({ search: e.target.value })
     }
@@ -31,37 +52,36 @@ class Data extends Component {
 
     onSearch = e => {
         e.preventDefault()
-        let filterData = this.state.person.filter(value => { return value.nama.toLowerCase().includes(this.state.search.toLowerCase()) })
+        let filterData = this.state.person.filter(value => { return value.name.toLowerCase().includes(this.state.search.toLowerCase()) })
 
         this.setState({ filter: filterData })
     }
 
-    onPrev = () => {
-        this.setState({ page: this.state.page - 1})
-        console.log(this.state.page);
+    onPrev = async() => {
+        if(this.state.page >= 1){
+            await this.setState({ page: this.state.page - 1 })
+            console.log(this.state.page);
+        }
+        this.fetchApi()
     }
 
-    onNext = () => {
-        // this.setState({page: this.state.page + 1})
-        // console.log(this.state.page);
-        fetch(`https://swapi.dev/api/people/?page=2`)
-            .then(res => res.json())
-            .then(res => res.next())
-            .then(res => {
-                console.log(res)
-                this.setState({ person: res.results })
-            })
+    onNext = async() => {
+        await this.setState({ page: this.state.page + 1 })
+        console.log(this.state.page);
+        this.fetchApi()
     }
 
     render() {
-        const { person, filter, page } = this.state
+        const { person, filter, page, dataLength } = this.state
         const fill = filter !== '' ? filter : person
+
         return (
             <>
                 <NavBar search={this.onInput} btnSearch={this.onSearch} />
                 <div className={Style.listData}>
                     <PersonList person={fill} />
-                    <Page className={`justify-content-center ${Style.Page}`} page={page} onPrev={this.onPrev} onNext={this.onNext} />
+                    <Space/>
+                    <PaginationBtn className={`justify-content-center ${Style.Page}`} page={page} dataLength={dataLength} onPrev={this.onPrev} onNext={this.onNext} />
                 </div>
             </>
         );
@@ -90,21 +110,6 @@ const PersonList = ({ person }) => {
                 </tbody>
             </Table>
         </div>
-    )
-}
-const Page = ({ className, page, onPrev, onNext }) => {
-    return (
-        <Pagination className={className}>
-            <Pagination.First />
-            <Pagination.Prev />
-
-            <Pagination.Item onClick={onPrev}>{page - 1}</Pagination.Item>
-            <Pagination.Item active>{page}</Pagination.Item>
-            <Pagination.Item onClick={onNext}>{page + 1}</Pagination.Item>
-
-            <Pagination.Next />
-            <Pagination.Last />
-        </Pagination>
     )
 }
 
