@@ -53,6 +53,8 @@ const PersonList = ({ person }) => {
                         <th>No</th>
                         <th>Nama</th>
                         <th>Gender</th>
+                        <th>Hair Color</th>
+                        <th>Skin Color</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,6 +63,8 @@ const PersonList = ({ person }) => {
                             <td>{index + 1}</td>
                             <td>{x.name}</td>
                             <td>{x.gender}</td>
+                            <td>{x.hair_color}</td>
+                            <td>{x.skin_color}</td>
                         </tr>
                     )}
                 </tbody>
