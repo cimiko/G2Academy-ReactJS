@@ -3,6 +3,12 @@
 }
 
 .wrapper{
+    overflow-y: scroll;
+    position: relative;
+    height: 350px;
+}
+
+.listData{
     margin: auto;
     width: 80%;
     padding: 40px;
@@ -11,5 +17,11 @@
     border: 1px solid grey;
     box-shadow: 0px 0px 11px -2px #000000;
     background-color: white;
+    height: 500px;
+}
 
+.Page{
+    margin: auto;
+    text-align: center;
+    width: 100%;
 }
