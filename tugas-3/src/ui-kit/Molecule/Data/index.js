@@ -35,7 +35,7 @@ class Data extends Component {
             <>
                 <NavBar search={this.onInput} btnSearch={this.onSearch} />
                 <div className={Style.listData}>
-                    <PersonList person={fill} page={page} no={number} />
+                    <PersonList person={fill} no={number} />
                     <Space/>
                     <PaginationBtn className={`justify-content-center ${Style.Page}`} page={page} dataLength={dataLength} onPrev={Prev} onNext={Next} />
                 </div>
@@ -44,8 +44,7 @@ class Data extends Component {
     }
 }
 
-const PersonList = ({ person, page, no }) => {
-    // const listNo = page === 1 ? no ++1 : no ++11
+const PersonList = ({ person, no }) => {
 
     return (
         <div className={Style.wrapper}>
@@ -79,7 +78,8 @@ PersonList.propTypes = {
     person: PropTypes.arrayOf(
         PropTypes.objectOf(
             PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        ))
+        )),
+    no: PropTypes.number
 }
 
 
