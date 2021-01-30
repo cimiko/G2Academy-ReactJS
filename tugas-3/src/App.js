@@ -28,9 +28,11 @@ class App extends Component {
     this.index()
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   this.fetchApi()
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.page !== this.state.page){
+      this.fetchApi()
+    }
+  }
 
   index = () => {
     if(this.state.page === 1){
@@ -50,12 +52,10 @@ class App extends Component {
     if (this.state.page >= 1) {
       await this.setState({ page: this.state.page - 1, number: this.state.number - 10 })
     }
-    this.fetchApi()
   }
 
   onNext = async () => {
     await this.setState({ page: this.state.page + 1, number: this.state.number + 10 })
-    this.fetchApi()
   }
 
 

@@ -77,7 +77,7 @@ const PersonList = ({ person, no }) => {
 PersonList.propTypes = {
     person: PropTypes.arrayOf(
         PropTypes.objectOf(
-            PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array])
         )),
     no: PropTypes.number
 }
