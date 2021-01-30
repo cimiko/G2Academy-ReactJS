@@ -2,8 +2,8 @@ import React from 'react'
 import { Pagination } from 'react-bootstrap'
 
 const PaginationBtn = ({ className, page, onPrev, onNext, dataLength }) => {
-    const first = page === 1 ? true : false 
-    const last = page === dataLength ? true: false
+    const first = page === 1 
+    const last = page === dataLength
     return (
         <Pagination className={className}>
             <Pagination.Prev disabled={first} onClick={onPrev} />

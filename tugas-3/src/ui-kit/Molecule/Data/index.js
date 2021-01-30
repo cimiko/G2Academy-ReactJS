@@ -28,14 +28,14 @@ class Data extends Component {
 
     render() {
         const {  filter } = this.state
-        const { person, Next, Prev , page, dataLength} = this.props
+        const { person, Next, Prev , page, dataLength, number} = this.props
         const fill = filter !== '' ? filter : person
 
         return (
             <>
                 <NavBar search={this.onInput} btnSearch={this.onSearch} />
                 <div className={Style.listData}>
-                    <PersonList person={fill} />
+                    <PersonList person={fill} page={page} no={number} />
                     <Space/>
                     <PaginationBtn className={`justify-content-center ${Style.Page}`} page={page} dataLength={dataLength} onPrev={Prev} onNext={Next} />
                 </div>
@@ -44,7 +44,9 @@ class Data extends Component {
     }
 }
 
-const PersonList = ({ person }) => {
+const PersonList = ({ person, page, no }) => {
+    // const listNo = page === 1 ? no ++1 : no ++11
+
     return (
         <div className={Style.wrapper}>
             <Table striped bordered hover className={Style.personTable}>
@@ -59,8 +61,8 @@ const PersonList = ({ person }) => {
                 </thead>
                 <tbody>
                     {person.map((x, index) =>
-                        <tr key={index}>
-                            <td>{index + 1}</td>
+                        <tr key={index + no}>
+                            <td>{index + no}</td>
                             <td>{x.name}</td>
                             <td>{x.gender}</td>
                             <td>{x.hair_color}</td>
