@@ -10,7 +10,8 @@ class App extends Component {
       person: [],
       page: 1,
       dataLength: 0,
-      number: 0
+      number: 0,
+      dataRow: 0
     }
   }
 
@@ -18,7 +19,7 @@ class App extends Component {
     fetch(`https://swapi.dev/api/people/?page=${this.state.page}`)
       .then(res => res.json())
       .then(res => {
-        this.setState({ person: res.results })
+        this.setState({ person: res.results, dataRow: res.results.length })
       })
   }
 
@@ -44,18 +45,18 @@ class App extends Component {
     await fetch(`https://swapi.dev/api/people/`)
       .then(res => res.json())
       .then(res => {
-        this.setState({ dataLength: Math.ceil(res.count / 10) })
+        this.setState({ dataLength: Math.ceil(res.count / res.results.length) })
       })
   }
 
   onPrev = async () => {
     if (this.state.page >= 1) {
-      await this.setState({ page: this.state.page - 1, number: this.state.number - 10 })
+      await this.setState({ page: this.state.page - 1, number: this.state.number - this.state.dataRow })
     }
   }
 
   onNext = async () => {
-    await this.setState({ page: this.state.page + 1, number: this.state.number + 10 })
+    await this.setState({ page: this.state.page + 1, number: this.state.number + this.state.dataRow })
   }
 
 
