@@ -1,9 +1,6 @@
 .App {
   text-align: center;
-<<<<<<< HEAD
   position: relative;
-=======
->>>>>>> f196fc1c4974b858ee67a2e849cdacfac76b8342
 }
 
 .App-logo {
@@ -18,11 +15,7 @@
 }
 
 .App-header {
-<<<<<<< HEAD
   /* background-color: #282c34; */
-=======
-  background-color: #282c34;
->>>>>>> f196fc1c4974b858ee67a2e849cdacfac76b8342
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -32,7 +25,6 @@
   color: white;
 }
 
-<<<<<<< HEAD
 #myVideo {
   position: absolute;
   left: 0;
@@ -46,8 +38,6 @@
   height: 100vh;
 }
 
-=======
->>>>>>> f196fc1c4974b858ee67a2e849cdacfac76b8342
 .App-link {
   color: #61dafb;
 }

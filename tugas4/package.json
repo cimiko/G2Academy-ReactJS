@@ -3,30 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.11.2",
     "aos": "^2.3.4",
-=======
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
->>>>>>> f196fc1c4974b858ee67a2e849cdacfac76b8342
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
-<<<<<<< HEAD
     "react-parallax": "^3.1.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-scroll-parallax": "^2.3.5",
-=======
-    "react-scripts": "4.0.1",
->>>>>>> f196fc1c4974b858ee67a2e849cdacfac76b8342
     "web-vitals": "^0.2.4"
   },
   "scripts": {

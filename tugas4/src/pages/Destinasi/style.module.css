@@ -1,0 +1,69 @@
+.navLink{
+    color: white;
+}
+
+.jumboHead1{
+    background-image: url('../../ui-kit/Files/Img/Bromo.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.jumboText{
+    margin-top: 10%;
+    margin-left: 100px;
+}
+
+.wht{
+    color: white;
+}
+
+.blk{
+    color: black;
+}
+
+.jumboHead2{
+    background-image: url('../../ui-kit/Files/Img/RajaAmpat.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.jumboHead3{
+    background-image: url('../../ui-kit/Files/Img/Lombok.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.jumboHead4{
+    background-image: url('../../ui-kit/Files/Img/Bandung2.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+.jumboHead5{
+    background-image: url('../../ui-kit/Files/Img/Bali.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.jumboHead6{
+    background-image: url('../../ui-kit/Files/Img/LabuanBajo2.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
