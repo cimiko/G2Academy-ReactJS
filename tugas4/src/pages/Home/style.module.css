@@ -1,7 +1,13 @@
 .jumboHead{
     color: white;
     margin: auto;
-    margin: 20% 10%;
+    /* margin: 20% 10%; */
+    background-image: url('../../ui-kit/Files/Img/back1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
 }
 
 .headBack{
