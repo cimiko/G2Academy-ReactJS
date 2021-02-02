@@ -1,6 +1,7 @@
 import React from 'react'
+import indo from '../../ui-kit/Files/Video/indo.mp4'
 import { Header, Body, Footer } from 'ui-kit/Organism'
-import { NavLink, H1, Img, H3 } from 'ui-kit/Atom'
+import { Video, NavLink, H1, Img } from 'ui-kit/Atom'
 import { NavBar } from 'ui-kit/Molecule'
 import { Row, Col, Card } from 'antd';
 import { Jumbotron, Container } from 'react-bootstrap'
@@ -35,25 +36,16 @@ function Home() {
                 </NavBar>
             </Header>
             <Body>
-                {/* <Video file={indo} /> */}
-                <Jumbotron className={`${style.jumboHead}`}>
-                    <Row className={style.jumboText}>
-                        <Col span={12}>
-                            <H1 anim="zoom-in-down" className={style.wht}>Labuan Bajo</H1>
-                            {/* <H1 className={style.h1}>Gunung berapi di Jawa Timur</H1> */}
-                            <H3 anim="zoom-in-up" className={style.wht}>Labuan Bajo merupakan salah satu desa dari 19 desa dan kelurahan yang berada di kecamatan Komodo, Kabupaten Manggarai Barat, provinsi Nusa Tenggara Timur, Indonesia.</H3>
-                        </Col>
-                    </Row>
-                </Jumbotron>
-                {/* <div className={style.headBack}>
-                    <Row>
+                <Video file={indo} />
+                <div className={style.headBack}>
+                    {/* <Row>
                         <Col span={12} className={`${style.jumboHead}`}>
                             <H1 anim="fade-up" className={style.h1}>Welcome To</H1>
                             <H1 className={style.h1}>CIMIKO PROJECTS</H1>
                         </Col>
                         <Col span={12}></Col>
-                    </Row>
-                </div> */}
+                    </Row> */}
+                </div>
                 <div className={style.cardWrap} data-aos="fade-down">
                     <Row>
                         <Col span={6} offset={4}>
