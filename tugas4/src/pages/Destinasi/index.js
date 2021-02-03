@@ -103,6 +103,7 @@ function Destinasi() {
                     </Body>
                 </Route>
             </Switch>
+            
             <Footer />
         </div>
     )
