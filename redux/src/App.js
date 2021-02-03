@@ -35,8 +35,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    incrementCounter: payload => dispatch(increment(payload)),
-    decrementCounter: payload => dispatch(decrement(payload))
+    incrementCounter: (payload) => dispatch(increment(payload)),
+    decrementCounter: (payload) => dispatch(decrement(payload))
   }
 }
 
