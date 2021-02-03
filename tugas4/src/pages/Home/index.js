@@ -38,13 +38,6 @@ function Home() {
             <Body>
                 <Video file={indo} />
                 <div className={style.headBack}>
-                    {/* <Row>
-                        <Col span={12} className={`${style.jumboHead}`}>
-                            <H1 anim="fade-up" className={style.h1}>Welcome To</H1>
-                            <H1 className={style.h1}>CIMIKO PROJECTS</H1>
-                        </Col>
-                        <Col span={12}></Col>
-                    </Row> */}
                 </div>
                 <div className={style.cardWrap} data-aos="fade-down">
                     <Row>
