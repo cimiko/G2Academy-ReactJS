@@ -1,29 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addtodo } from './action'
-
-/*
-  CONTOH STATE TODO
-  todo = [
-    {
-      id: 1,
-      name: 'makan'
-    },
-    {
-      id: 2,
-      name: 'tidur'
-    },
-    {
-      id: 3,
-      name: 'koding'
-    }
-  ]
-  DISPATCH addtodo
-  action.payload = {
-    id: ...,
-    name: ...
-  }
-*/
+import { addtodo, updateTodo, deleteTodo } from './action'
+import { Table, Button } from 'react-bootstrap'
 
 class Todo extends React.Component {
   constructor() {
@@ -31,22 +9,41 @@ class Todo extends React.Component {
     this.state = {
       value: ''
     }
-    this.onChange = this.onChange.bind(this)
-    this.onSubmitTodo = this.onSubmitTodo.bind(this)
+    // this.onChange = this.onChange.bind(this)
+    // this.onSubmitTodo = this.onSubmitTodo.bind(this)
+    // this.onEdit = this.onEdit.bind(this)
   }
 
-  onChange(e) {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSubmitTodo() {
+  onSubmitTodo = () => {
     const { todo, add } = this.props
+    console.log(todo);
     const id = todo.length === 0 ? 1 : todo[todo.length - 1].id + 1
     add({
       id,
       name: this.state.value
     })
+    console.log(add);
     this.setState({ value: '' })
+  }
+
+  onEdit = (e) => {
+    const { update } = this.props
+
+    update({
+      e,
+      name: this.state.value
+    })
+    // console.log(add);
+    // this.setState({value: ''})
+  }
+
+  onDelete = (e) => {
+    const { todo, deleteData } = this.props
+    const id = todo.filter(item => item.id === e ? item.splice(id, 1): item.id)
   }
 
   render() {
@@ -62,11 +59,25 @@ class Todo extends React.Component {
           value={value}
         />
         <button onClick={this.onSubmitTodo}>Add Todo</button>
-        <ol>
-          {todo.map(x => (
-            <li key={x.id}>{x.name}</li>
-          ))}
-        </ol>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ID Person</th>
+              <th colSpan='2'>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {todo.map((x, i) =>
+              <tr key={x.id}>
+                <td>{i + 1}</td>
+                <td>{x.name}</td>
+                <td><Button onClick={() => this.onEdit(x.id)}>Edit</Button></td>
+                <td><Button onClick={() => this.onDelete(x.id)}>Delete</Button></td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
       </div>
     )
   }
@@ -77,7 +88,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  add: payload => dispatch(addtodo(payload))
+  add: payload => dispatch(addtodo(payload)),
+  update: payload => dispatch(updateTodo(payload)),
+  deleteData: payload => dispatch(deleteTodo(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo)
