@@ -1,3 +1,5 @@
 export { default as H1 } from './H1'
 export { default as H3 } from './H3'
 export { default as P } from './P'
+export { default as Video } from './Video'
+export { default as Img } from './Img'

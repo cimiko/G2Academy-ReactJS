@@ -1,10 +1,10 @@
 import React from 'react'
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
-// import { Link } from 'react-router-dom'
+import style from './style.module.css'
 
 function NavBar() {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar fixed="top" className={`${style.navbar}`}expand="lg">
             <Navbar.Brand href="/">CIMIKO PROJECTS</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
