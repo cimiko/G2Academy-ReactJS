@@ -1,5 +1,5 @@
 import './App.css';
-import { Home } from 'pages'
+import { Home, Todo } from 'pages'
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,6 +14,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/todo">
+          <Todo />
         </Route>
       </Switch>
     </Router>
