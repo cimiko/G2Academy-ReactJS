@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Body({children}) {
+function Body({children, className}) {
     return (
-        <div>
+        <div className={className}>
             {children}
         </div>
     )

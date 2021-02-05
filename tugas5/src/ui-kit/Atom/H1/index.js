@@ -1,8 +1,8 @@
 import React from 'react'
 
-function H1({ children, className }) {
+function H1({ children, className, anim }) {
     return (
-        <h1 className={className}>{children}</h1>
+        <h1 className={className} data-aos={anim}>{children}</h1>
     )
 }
 

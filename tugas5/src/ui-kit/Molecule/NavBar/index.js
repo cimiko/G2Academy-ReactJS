@@ -2,7 +2,7 @@ import React from 'react'
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
 import style from './style.module.css'
 
-function NavBar() {
+function NavBar({onInput, onSearch}) {
     return (
         <Navbar fixed="top" className={`${style.navbar}`}expand="lg">
             <Navbar.Brand href="/">CIMIKO PROJECTS</Navbar.Brand>
@@ -13,8 +13,8 @@ function NavBar() {
                     <Nav.Link href="/todo">ToDo</Nav.Link>
                 </Nav>
                 <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
+                    <FormControl type="text" placeholder="Search" name="search" className="mr-sm-2" onKeyUp={onInput} />
+                    <Button variant="outline-success" onClick={onSearch}>Search</Button>
                 </Form>
             </Navbar.Collapse>
         </Navbar>

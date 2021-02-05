@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavBar } from 'ui-kit/Molecule'
 
-function Header() {
+function Header({onInput, onSearch}) {
     return (
         <div>
-            <NavBar/>
+            <NavBar onInput={onInput} onSearch={onSearch} />
         </div>
     )
 }
