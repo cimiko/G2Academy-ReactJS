@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addtodo, updateTodo, deleteTodo } from '../../action'
+import { addtodo, updateTodo, deleteTodo, filterTodo } from '../../action'
 import { Table, Button } from 'react-bootstrap'
 import { Header, Body, Footer } from 'ui-kit/Organism'
 import style from './style.module.css'
@@ -39,7 +39,6 @@ class Todo extends React.Component {
 
   onInputSearch = async(e) => {
     this.setState(await{ search: e.target.value })
-    console.log(this.state.search);
   }
 
   onSubmitTodo = async () => {
@@ -67,7 +66,6 @@ class Todo extends React.Component {
       id: dataName[0].id,
       name: this.state.value
     })
-    // console.log(add);
     this.setState({ value: '' })
   }
 
@@ -84,8 +82,6 @@ class Todo extends React.Component {
     const dataName =  await todo.filter(item => {return item.name.toLowerCase().includes(this.state.search.toLowerCase())})
 
     this.setState({filter: dataName})
-    console.log(dataName);
-    console.log(this.state.value);
   }
 
   render() {
@@ -139,7 +135,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   add: payload => dispatch(addtodo(payload)),
   update: payload => dispatch(updateTodo(payload)),
-  deleteData: payload => dispatch(deleteTodo(payload))
+  deleteData: payload => dispatch(deleteTodo(payload)),
+  filterData: payload => dispatch(filterTodo(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo)

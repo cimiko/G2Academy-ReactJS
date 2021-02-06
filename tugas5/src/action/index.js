@@ -1,11 +1,12 @@
 import { increment, decrement } from './counter'
 
-import { addtodo, updateTodo, deleteTodo } from './todo'
+import { addtodo, updateTodo, deleteTodo, filterTodo } from './todo'
 
 export {
     increment,
     decrement,
     addtodo,
     updateTodo,
-    deleteTodo
+    deleteTodo,
+    filterTodo
 }

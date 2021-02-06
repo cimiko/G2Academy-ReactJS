@@ -1,4 +1,4 @@
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO } from 'action/contants'
+import { ADD_TODO, UPDATE_TODO, DELETE_TODO, FILTER_TODO } from 'action/contants'
 
 export const addtodo = payload => {
     return {
@@ -17,6 +17,13 @@ export const updateTodo = payload => {
 export const deleteTodo = payload => {
     return {
         type: DELETE_TODO,
+        payload
+    }
+}
+
+export const filterTodo = payload => {
+    return {
+        type: FILTER_TODO,
         payload
     }
 }
