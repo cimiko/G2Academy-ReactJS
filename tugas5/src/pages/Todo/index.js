@@ -12,7 +12,7 @@ class Todo extends React.Component {
       value: '',
       edit: '',
       data: [],
-      id: 1, 
+      id: 1,
       search: '',
       filter: ''
     }
@@ -37,8 +37,8 @@ class Todo extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onInputSearch = async(e) => {
-    this.setState(await{ search: e.target.value })
+  onInputSearch = async (e) => {
+    this.setState(await { search: e.target.value })
   }
 
   onSubmitTodo = async () => {
@@ -70,18 +70,17 @@ class Todo extends React.Component {
   }
 
   onDelete = async (e) => {
-    const { todo, deleteData } = this.props
-    // await this.fetch()
-    const del = await todo.splice(e, 1)
-    deleteData({ del })
-  }
-  
-  onSearch = async() => {
     const { todo } = this.props
-    
-    const dataName =  await todo.filter(item => {return item.name.toLowerCase().includes(this.state.search.toLowerCase())})
+    await todo.splice(e, 1)
+    await this.fetch()
+  }
 
-    this.setState({filter: dataName})
+  onSearch = async () => {
+    const { todo } = this.props
+
+    const dataName = await todo.filter(item => { return item.name.toLowerCase().includes(this.state.search.toLowerCase()) })
+
+    this.setState({ filter: dataName })
   }
 
   render() {
@@ -92,37 +91,42 @@ class Todo extends React.Component {
       <div>
         <Header onInput={this.onInputSearch} onSearch={this.onSearch} />
         <Body className={style.body}>
-          <input
-            type="text"
-            name="value"
-            placeholder="what are you going to do?"
-            onChange={this.onChange}
-            value={value}
-          />
-          <button onClick={this.onSubmitTodo}>Add Todo</button>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>ID Person</th>
-                <th>ToDo</th>
-                <th colSpan='2'>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fill.map((x, i) =>
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{x.id}</td>
-                  <td>{x.name}</td>
-                  <td><Button onClick={() => this.onEdit(i)}>Edit</Button></td>
-                  <td><Button onClick={() => this.onDelete(i)}>Delete</Button></td>
+          <div  className={style.form}>
+            <input
+              type="text"
+              name="value"
+              placeholder="what are you going to do?"
+              onChange={this.onChange}
+              value={value}
+            />
+            <button onClick={this.onSubmitTodo}>Add Todo</button>
+          </div>
+
+          <div className={style.tabel}>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>ID Person</th>
+                  <th>ToDo</th>
+                  <th colSpan='2'>Action</th>
                 </tr>
-              )}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {fill.map((x, i) =>
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{x.id}</td>
+                    <td>{x.name}</td>
+                    <td><Button onClick={() => this.onEdit(i)}>Edit</Button></td>
+                    <td><Button onClick={() => this.onDelete(i)}>Delete</Button></td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+          </div>
         </Body>
-        <Footer/>
+        <Footer />
       </div>
     )
   }
