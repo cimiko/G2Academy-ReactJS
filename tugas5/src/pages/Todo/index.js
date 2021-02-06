@@ -10,7 +10,6 @@ class Todo extends React.Component {
     super()
     this.state = {
       value: '',
-      edit: '',
       data: [],
       id: 1,
       search: '',
@@ -43,14 +42,12 @@ class Todo extends React.Component {
 
   onSubmitTodo = async () => {
     const { todo, add } = this.props
-    console.log(todo);
-    // const id = todo.length === 0 ? 1 : todo[todo.length - 1].id + 1
+    
     await this.setState({ id: todo.length + 1 })
     add({
       id: this.state.id,
       name: this.state.value
     })
-    console.log(add);
     await this.fetch()
     this.setState({ value: '' })
   }
@@ -60,7 +57,6 @@ class Todo extends React.Component {
 
     const dataName = await todo.filter(item => item.id === todo[e].id)
 
-    console.log(dataName[0].id);
     await todo.splice(e, 1)
     update({
       id: dataName[0].id,
@@ -85,7 +81,7 @@ class Todo extends React.Component {
 
   render() {
     const { value, data, filter } = this.state
-    const fill = filter !== '' ? filter : data
+    const fill = filter.length !== 0 ? filter : data
     // const { todo } = this.props
     return (
       <div>
