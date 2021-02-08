@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavDropdown } from 'react-bootstrap'
 
-function NavDrop({ children, href }) {
+function NavDrop({ children }) {
     return (
-        <NavDropdown.Item href={href}>{children}</NavDropdown.Item>
+        <NavDropdown title="Dropdown" id="basic-nav-dropdown">{children}</NavDropdown>
     )
 }
 

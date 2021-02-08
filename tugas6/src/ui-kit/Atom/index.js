@@ -1,1 +1,6 @@
 export { default as NavLink } from './NavLink'
+export { default as NavDropItem } from './NavDropItem'
+export { default as NavDivid } from './NavDivid'
+export { default as NavDrop } from './NavDrop'
+export { default as Input } from './Input'
+export { default as Img } from './Img'
