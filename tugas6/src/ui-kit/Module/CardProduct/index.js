@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Skeleton, Card, Avatar } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Skeleton, Card } from 'antd';
+// import { Avatar } from 'antd';
+// import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Img } from 'ui-kit/Atom'
 
 const { Meta } = Card;
 
 class CardProduct extends Component {
     state = {
-        loading: false,
+        loading: this.props.loading,
     };
 
     onChange = checked => {
@@ -16,32 +17,37 @@ class CardProduct extends Component {
 
     render() {
         const { loading } = this.state;
+        const { img, title, description } = this.props
 
         return (
             <>
-                {/* <Switch checked={!loading} onChange={this.onChange} /> */}
-
                 <Card
                     style={{ width: '100%', marginTop: 16 }}
                     cover={
                         <Img
-                          alt="example"
-                          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                            alt="example"
+                            //   src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                            src={img}
+                            width='200'
+                            height='200'
                         />
-                      }
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
+                    }
+                // actions={[
+                //     <SettingOutlined key="setting" />,
+                //     <EditOutlined key="edit" />,
+                //     <EllipsisOutlined key="ellipsis" />,
+                // ]}
                 >
                     <Skeleton loading={loading} avatar active>
                         <Meta
-                            avatar={
-                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                            }
-                            title="Card title"
-                            description="This is the description"
+                            
+                            // avatar={
+                            //     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                            // }
+                            // title="Card title"
+                            // description="This is the description"
+                            title={title}
+                            description={description}
                         />
                     </Skeleton>
                 </Card>
