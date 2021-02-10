@@ -4,18 +4,16 @@ import { Badge } from 'antd';
 class IconBadge extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            count: this.props.count
-        }
+        this.state = {}
     }
 
 
     render() {
-        const { children } = this.props
+        const { children, count } = this.props
         return (
             <div>
                 <div>
-                    <Badge count={this.state.count}>
+                    <Badge count={count}>
                         {children}
                     </Badge>
                 </div>

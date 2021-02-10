@@ -1,6 +1,13 @@
-export const INCREMENT = 'INCREMENT'
-export const DECREMENT = 'DECREMENT'
+import { INCREMENT, DECREMENT } from './constans'
 
-export const FETCH_PRODUCT = 'FETCH_PRODUCT'
-export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS'
+export const increment = _ => {
+    return {
+        type: INCREMENT
+    }
+}
+
+export const decrement = _ => {
+    return {
+        type: DECREMENT
+    }
+}

@@ -1,0 +1,8 @@
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
+
+export const FETCH_PRODUCT = 'FETCH_PRODUCT'
+export const ADD_PRODUCT = 'ADD_PRODUCT'
+export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS'
+
+export const ADD_ORDER = 'ADD_ORDER'

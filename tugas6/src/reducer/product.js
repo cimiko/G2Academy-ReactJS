@@ -1,4 +1,4 @@
-import { FETCH_PRODUCT, ADD_PRODUCT, FETCH_PRODUCT_SUCCESS } from 'action/counter'
+import { FETCH_PRODUCT, ADD_PRODUCT, FETCH_PRODUCT_SUCCESS } from 'action/constans'
 
 const initialState = {
     isLoading: true,

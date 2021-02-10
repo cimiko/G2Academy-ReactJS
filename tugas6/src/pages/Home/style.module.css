@@ -1,3 +1,11 @@
 .icon {
     font-size: 20px;
 }
+
+.textCenter{
+    text-align: center;
+}
+
+.btn{
+    cursor: pointer;
+}

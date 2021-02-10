@@ -1,24 +1,12 @@
-import { FETCH_PRODUCT, ADD_PRODUCT, FETCH_PRODUCT_SUCCESS } from './counter'
+import { increment, decrement } from './counter'
+import { addProduct, fetchProduct } from './fetchData'
+import { addOrder } from './order'
 
-const fetchProductRequest = _ => ({
-    type: FETCH_PRODUCT
-})
-
-const fetchProductSuccess = payload => ({
-    type: FETCH_PRODUCT_SUCCESS,
-    payload
-})
-
-export const fetchProduct = () => dispatch => {
-    dispatch(fetchProductRequest())
-    fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
-        .then(json => dispatch(fetchProductSuccess(json)))
+export {
+  increment,
+  decrement,
+  addProduct,
+  fetchProduct,
+  addOrder
 }
 
-export const addProduct = payload => {
-    return {
-        type: ADD_PRODUCT,
-        payload
-    }
-}
