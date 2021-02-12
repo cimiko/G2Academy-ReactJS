@@ -1,12 +1,12 @@
 import { INCREMENT, DECREMENT } from 'action/constans'
-const initialState = 0
+const initialState = 1
 
 const counterFunc = (currState = initialState, action) => {
   switch (action.type) {
     case INCREMENT:
-      return currState + 1
+      return action.payload + currState
     case DECREMENT:
-      return currState - 1
+      return action.payload  - currState
     default:
       return currState
   }

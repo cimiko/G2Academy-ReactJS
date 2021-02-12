@@ -8,6 +8,7 @@ import { Row, Col, Button, InputNumber, Modal } from 'antd'
 import { PlusCircleTwoTone, MinusCircleTwoTone } from '@ant-design/icons';
 import { connect } from 'react-redux'
 import { fetchProduct, addProduct, addOrder } from 'action'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
     constructor(props) {
@@ -16,7 +17,6 @@ class Home extends Component {
             counter: 1,
             visible: false,
             confirmLoading: false,
-            count: 0,
             id: 0,
             title: '',
             img: '',
@@ -32,7 +32,6 @@ class Home extends Component {
 
     cartProduct = async a => {
         const { data } = this.props
-        console.log(this.props.data.product[a]);
         await this.setState({
             id: data.product[a].id,
             img: data.product[a].image,
@@ -45,68 +44,69 @@ class Home extends Component {
 
     counterPlus() {
         this.setState({ counter: this.state.counter + 1 })
-        console.log(this.state.counter);
     }
 
     counterMin() {
         this.setState({ counter: this.state.counter - 1 })
-        console.log(this.state.counter);
     }
 
     showModal = () => {
         this.setState({ visible: true })
     };
 
-    handleOk = async () => {
-        const { img, title, description, price, id } = this.state
+    handleOk = async (a) => {
+        const { img, title, description, price, id, counter } = this.state
         const { addOrder } = this.props
         await this.setState({
-            modalText: 'The modal will be closed after two seconds',
-            confirmLoading: true,
-            count: this.state.count + 1
+            confirmLoading: true
         })
-        console.log(this.state.count);
-        setTimeout(() => {
-            this.setState({
-                visible: false,
-                confirmLoading: false,
-                counter: 1
-            })
-        }, 2000);
-        
+
         await addOrder({
             id,
             title,
             img,
             description,
-            price
+            price,
+            totalPrice: price * counter,
+            counter
         })
+
+        setTimeout(() => {
+            this.setState({
+                visible: false,
+                confirmLoading: false
+            })
+        }, 500);
+
+
         this.setState({
-            id:0,
+            id: 0,
             img: '',
             description: '',
             price: 0,
-            title: ''
+            title: '',
+            counter: 1
         })
     };
 
     handleCancel = () => {
-        console.log('Clicked cancel button');
         this.setState({ visible: false, counter: 1 })
     };
 
     render() {
-        const { data } = this.props
-        const { counter, visible, confirmLoading, img, count } = this.state
+        const { data, cart } = this.props
+        const { counter, visible, confirmLoading, img } = this.state
 
         return (
             <div>
                 <Header>
                     <NavBar>
-                        <NavLink href="/">
-                            <IconBadge count={count}>
-                                <ShoppingTwoTone twoToneColor="#52c41a" className={style.icon} />
-                            </IconBadge>
+                        <NavLink>
+                            <Link to='/cart'>
+                                <IconBadge count={cart.length}>
+                                    <ShoppingTwoTone twoToneColor="#52c41a" className={style.icon} />
+                                </IconBadge>
+                            </Link>
                         </NavLink>
                         <NavLink href="/">
                             <IconBadge count="0">
@@ -133,7 +133,7 @@ class Home extends Component {
                                                 <Modal
                                                     title="Title"
                                                     visible={visible}
-                                                    onOk={this.handleOk}
+                                                    onOk={() => this.handleOk(i)}
                                                     confirmLoading={confirmLoading}
                                                     onCancel={this.handleCancel}
                                                 >
@@ -176,6 +176,7 @@ class Home extends Component {
 
 const mapStateToProps = store => ({
     data: store.product,
+    cart: store.order
 })
 
 const mapDispatchToProps = dispatch => ({

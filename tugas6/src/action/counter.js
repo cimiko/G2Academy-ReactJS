@@ -1,13 +1,15 @@
 import { INCREMENT, DECREMENT } from './constans'
 
-export const increment = _ => {
+export const increment = payload => {
     return {
-        type: INCREMENT
+        type: INCREMENT,
+        payload
     }
 }
 
-export const decrement = _ => {
+export const decrement = payload => {
     return {
-        type: DECREMENT
+        type: DECREMENT,
+        payload
     }
 }
