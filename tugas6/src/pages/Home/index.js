@@ -54,7 +54,7 @@ class Home extends Component {
         this.setState({ visible: true })
     };
 
-    handleOk = async (a) => {
+    handleOk = async () => {
         const { img, title, description, price, id, counter } = this.state
         const { addOrder } = this.props
         await this.setState({
@@ -108,15 +108,19 @@ class Home extends Component {
                                 </IconBadge>
                             </Link>
                         </NavLink>
-                        <NavLink href="/">
-                            <IconBadge count="0">
-                                <BellTwoTone twoToneColor="#52c41a" className={style.icon} />
-                            </IconBadge>
+                        <NavLink>
+                            <Link to='/cart'>
+                                <IconBadge count="0">
+                                    <BellTwoTone twoToneColor="#52c41a" className={style.icon} />
+                                </IconBadge>
+                            </Link>
                         </NavLink>
-                        <NavLink href="/">
-                            <IconBadge count="0">
-                                <MessageTwoTone twoToneColor="#52c41a" className={style.icon} />
-                            </IconBadge>
+                        <NavLink>
+                            <Link to='/cart'>
+                                <IconBadge count="0">
+                                    <MessageTwoTone twoToneColor="#52c41a" className={style.icon} />
+                                </IconBadge>
+                            </Link>
                         </NavLink>
                     </NavBar>
                 </Header>

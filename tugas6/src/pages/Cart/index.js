@@ -20,7 +20,8 @@ class Cart extends Component {
             loading: false,
             totalOrder: 0,
             counter: 1,
-            totalPrice: 0
+            totalPrice: 0,
+            search: ''
         }
     }
 
@@ -59,9 +60,14 @@ class Cart extends Component {
         this.setState({ counter: sumCount })
     }
 
+    onChange(e) {
+        this.setState({ search: e.target.value })
+        console.log(this.state.search);
+    }
+
     render() {
         const { Meta } = Card
-        const { loading, counter, totalPrice } = this.state
+        const { loading, counter, totalPrice, search } = this.state
         const { cart, plusProduct, minProduct, deleteOrder } = this.props
 
 
@@ -70,7 +76,7 @@ class Cart extends Component {
         return (
             <>
                 <Header>
-                    <NavBar>
+                    <NavBar onChange={this.onChange} name='search' value={search} >
                         <NavLink href="/">
                             <IconBadge count={cart.length}>
                                 <ShoppingTwoTone twoToneColor="#52c41a" className={style.icon} />
@@ -94,7 +100,7 @@ class Cart extends Component {
                             <h3 className={`mb-5`}>Keranjang</h3>
                             {cart.map((x, i) => (
                                 <Skeleton loading={loading} avatar active key={i}>
-                                    <div style={{width: '80%', border: '1px solid lightgrey'}} className='my-2'></div>
+                                    <div style={{ width: '80%', border: '1px solid lightgrey' }} className='my-2'></div>
                                     <Row className='py-2'>
                                         <Col span={6}>
                                             <Img src={x.img} width='150'
@@ -108,7 +114,7 @@ class Cart extends Component {
                                             <MinusCircleTwoTone style={{ fontSize: '20px' }} onClick={() => minProduct(i)} />
                                             <InputNumber style={{ width: '50px' }} value={x.counter} bordered={false} min={1} max={999} />
                                             <PlusCircleTwoTone style={{ fontSize: '20px' }} onClick={() => plusProduct(i)} />
-                                            <FontAwesomeIcon icon={faTrashAlt} className='ml-3' size='20px' color='red' onClick={() => deleteOrder(i)} cursor='pointer' /> Hapus
+                                            <FontAwesomeIcon icon={faTrashAlt} className='ml-3' size='lg' color='red' onClick={() => deleteOrder(i)} cursor='pointer' /> Hapus
                                         </Col>
                                     </Row>
                                 </Skeleton>
@@ -133,7 +139,7 @@ class Cart extends Component {
                                     <h5>{`$${totalPrice}`}</h5>
                                 </Col>
                             </Row>
-                            <Button style={{backgroundColor: '#52c41a', borderRadius: '8px'}} block>{`Beli (${counter})`}</Button>
+                            <Button style={{ backgroundColor: '#52c41a', borderRadius: '8px' }} block>{`Beli (${counter})`}</Button>
                         </Col>
                     </Row>
                 </Body>
