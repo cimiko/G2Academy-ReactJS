@@ -1,4 +1,4 @@
-import { ADD_ORDER, PLUS_PRODUCT, MIN_PRODUCT, DELETE_ORDER } from 'action/constans'
+import { ADD_ORDER, PLUS_PRODUCT, MIN_PRODUCT, DELETE_ORDER, SUBMIT_ORDER } from 'action/constans'
 
 const initialState = []
 
@@ -24,6 +24,8 @@ const order = (state = initialState, action) => {
             const filter = state.filter(item => item.id !== state[action.payload].id)
             const del = [...filter]
             return del
+        case SUBMIT_ORDER: 
+            return initialState
         default:
             return state
     }

@@ -1,4 +1,4 @@
-import { ADD_ORDER, PLUS_PRODUCT, MIN_PRODUCT, DELETE_ORDER } from './constans'
+import { ADD_ORDER, PLUS_PRODUCT, MIN_PRODUCT, DELETE_ORDER, SUBMIT_ORDER } from './constans'
 
 export const addOrder = payload => {
     return{
@@ -25,5 +25,11 @@ export const deleteOrder = payload => {
     return{
         type: DELETE_ORDER,
         payload
+    }
+}
+
+export const submitOrder = _ => {
+    return{
+        type: SUBMIT_ORDER
     }
 }

@@ -10,6 +10,8 @@ import { connect } from 'react-redux'
 import { addOrder, plusProduct, minProduct, deleteOrder } from 'action'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { submitOrder } from 'action/order';
+import { Link } from 'react-router-dom'
 
 
 
@@ -68,7 +70,7 @@ class Cart extends Component {
     render() {
         const { Meta } = Card
         const { loading, counter, totalPrice, search } = this.state
-        const { cart, plusProduct, minProduct, deleteOrder } = this.props
+        const { cart, plusProduct, minProduct, deleteOrder, submitOrder } = this.props
 
 
 
@@ -139,7 +141,9 @@ class Cart extends Component {
                                     <h5>{`$${totalPrice}`}</h5>
                                 </Col>
                             </Row>
-                            <Button style={{ backgroundColor: '#52c41a', borderRadius: '8px' }} block>{`Beli (${counter})`}</Button>
+                            <Link to='/' style={{ color: '#52c41a' }}>
+                                <Button onClick={() => submitOrder()} style={{ backgroundColor: '#52c41a', borderRadius: '8px' }} block>{`Beli (${counter})`}</Button>
+                            </Link>
                         </Col>
                     </Row>
                 </Body>
@@ -157,7 +161,8 @@ const mapDispatchToProps = dispatch => ({
     addOrder: payload => dispatch(addOrder(payload)),
     plusProduct: payload => dispatch(plusProduct(payload)),
     minProduct: payload => dispatch(minProduct(payload)),
-    deleteOrder: payload => dispatch(deleteOrder(payload))
+    deleteOrder: payload => dispatch(deleteOrder(payload)),
+    submitOrder: _ => dispatch(submitOrder())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
