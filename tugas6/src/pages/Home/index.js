@@ -7,7 +7,7 @@ import style from './style.module.css'
 import { Row, Col, Button, InputNumber, Modal } from 'antd'
 import { PlusCircleTwoTone, MinusCircleTwoTone } from '@ant-design/icons';
 import { connect } from 'react-redux'
-import { fetchProduct, addProduct, addOrder } from 'action'
+import { fetchProduct, addProduct, addOrder, plusProduct } from 'action'
 import { Link } from 'react-router-dom'
 
 class Home extends Component {
@@ -21,7 +21,8 @@ class Home extends Component {
             title: '',
             img: '',
             price: 0,
-            description: ''
+            description: '',
+            index: 0
         }
     }
 
@@ -56,20 +57,30 @@ class Home extends Component {
 
     handleOk = async () => {
         const { img, title, description, price, id, counter } = this.state
-        const { addOrder } = this.props
+        const { addOrder, cart, plusProduct } = this.props
         await this.setState({
             confirmLoading: true
         })
 
-        await addOrder({
-            id,
-            title,
-            img,
-            description,
-            price,
-            totalPrice: price * counter,
-            counter
-        })
+        const fill = cart.filter(x => x.id === id)
+
+        if(fill.length > 0){
+            await plusProduct(fill[0].index)
+        }else{
+            await addOrder({
+                id,
+                title,
+                img,
+                description,
+                price,
+                totalPrice: price * counter,
+                counter,
+                index: this.state.index
+            })
+            this.setState({
+                index: this.state.index + 1
+            })
+        }
 
         setTimeout(() => {
             this.setState({
@@ -85,7 +96,7 @@ class Home extends Component {
             description: '',
             price: 0,
             title: '',
-            counter: 1
+            counter: 1,
         })
     };
 
@@ -186,7 +197,8 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
     fetch: () => dispatch(fetchProduct()),
     add: payload => dispatch(addProduct(payload)),
-    addOrder: payload => dispatch(addOrder(payload))
+    addOrder: payload => dispatch(addOrder(payload)),
+    plusProduct: payload => dispatch(plusProduct(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
